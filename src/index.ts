@@ -8,8 +8,9 @@ getCoords("san antonio")
   .then((data) => {
     const { main } = data;
 
-    console.log(
-      `It is currently ${main.temp} and feels like ${main.feels_like}`
-    );
+    console.log(`last updated: ${new Date().toLocaleTimeString()}`);
+    console.log(`Temperature: ${main.temp}`);
+    console.log(`Feels like: ${main.feels_like}`);
+    console.log(`Humidity: ${main.humidity}`);
   })
   .catch(console.error);
