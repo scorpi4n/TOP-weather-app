@@ -8,9 +8,8 @@ export async function getCurrentWeather(
 ) {
   const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=${units}&appid=${apiKey}`;
   const res = await fetch(url, { mode: "cors" });
-  const data = await res.json();
 
-  return data;
+  return await res.json();
 }
 
 export async function getForecast(
@@ -21,7 +20,6 @@ export async function getForecast(
 ) {
   const url = `api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=${units}&appid=${apiKey}`;
   const res = await fetch(url, { mode: "cors" });
-  const data = await res.json();
 
-  return data;
+  return await res.json();
 }
