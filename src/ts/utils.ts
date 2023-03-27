@@ -8,3 +8,12 @@ export async function getCoords(location: string) {
 
   return { lat, lon };
 }
+
+export function toTitleCase(string: string) {
+  return string
+    .split(" ")
+    .map((word: string) => {
+      return word.charAt(0).toUpperCase() + word.slice(1);
+    })
+    .join(" ");
+}
