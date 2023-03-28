@@ -1,3 +1,4 @@
+import "./styles/style.scss";
 import { displayWeather } from "./ts/dom";
 import { getCoords } from "./ts/utils";
 import { getCurrentWeather } from "./ts/weather";
