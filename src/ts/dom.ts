@@ -1,4 +1,5 @@
 import { CurrentWeatherRes } from "../ts/weather";
+import { toTitleCase } from "./utils";
 
 export const weatherSection: HTMLElement = document.querySelector(
   "section[aria-labelledby=city]"
@@ -18,19 +19,20 @@ export const sunsetEl: HTMLElement = document.querySelector("#sunset");
 
 export function displayWeather(weatherData: CurrentWeatherRes) {
   cityEl.innerText = weatherData.name;
-  lastUpdatedTimeEl.innerText = new Date(
-    weatherData.dt * 1000
-  ).toLocaleTimeString();
-  weatherDescriptionEl.innerText = weatherData.weather[0].description;
-  temperatureEl.innerText = `${weatherData.main.temp}`;
-  feelsLikeEl.innerText = `${weatherData.main.feels_like}`;
-  humidityEl.innerText = `${weatherData.main.humidity}`;
-  windSpeedEl.innerText = `${weatherData.wind.speed}`;
-  cloudinessEl.innerText = `${weatherData.clouds.all}%`;
-  sunriseEl.innerText = `${new Date(
+  lastUpdatedTimeEl.innerText =
+    "Last updated: " + new Date(weatherData.dt * 1000).toLocaleTimeString();
+  weatherDescriptionEl.innerText = toTitleCase(
+    weatherData.weather[0].description
+  );
+  temperatureEl.innerText = `Temp: ${weatherData.main.temp}`;
+  feelsLikeEl.innerText = `Feels like ${weatherData.main.feels_like}`;
+  humidityEl.innerText = `Humidity: ${weatherData.main.humidity}`;
+  windSpeedEl.innerText = `Wind Speed: ${weatherData.wind.speed}`;
+  cloudinessEl.innerText = `Cloudiness: ${weatherData.clouds.all}%`;
+  sunriseEl.innerText = `Sunrise: ${new Date(
     weatherData.sys.sunrise * 1000
   ).toLocaleTimeString()}`;
-  sunsetEl.innerText = `${new Date(
+  sunsetEl.innerText = `Sunset: ${new Date(
     weatherData.sys.sunset * 1000
   ).toLocaleTimeString()}`;
 }
