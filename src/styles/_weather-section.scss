@@ -1,12 +1,41 @@
-section[aria-labelledby=city] {}
+section[aria-labelledby=city] {
+  max-width: fit-content;
+  margin-inline: auto;
+  border-radius: 1.5rem;
+  padding: 2rem;
+  background-color: pink;
 
-#city {}
+  * {
+    margin: 0;
+    font-weight: bold;
+  }
 
-#last-updated {}
+  .data {
+    font-weight: normal;
+  }
+}
 
-#description {}
+#temp {
+  font-size: 4rem;
+  line-height: 1;
 
-#temp {}
+  .data {
+    font-weight: bold;
+  }
+}
+
+#description {
+  font-size: 1.25rem;
+}
+
+#city {
+  font-size: 1.5rem;
+}
+
+#last-updated {
+  display: none;
+  font-size: .85em;
+}
 
 #feels-like {}
 

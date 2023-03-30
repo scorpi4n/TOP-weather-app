@@ -10,7 +10,7 @@
 
 <body>
     <h1>Weather Data</h1>
-    <label for="location">Location:</label>
+    <!-- <label for="location">Location:</label>
     <input type="text" name="location" id="location">
     <fieldset>
         <legend>Units:</legend>
@@ -19,22 +19,19 @@
         <label for="celcius">C&deg;</label>
         <input type="radio" name="units" id="celcius">
     </fieldset>
-    </form>
+    </form> -->
 
     <section aria-labelledby="city">
+        <div id="temp"><span class="data"></span>&deg;</div>
+        <div id="description"></div>
         <h2 id="city">City</h2>
-        <p id="last-updated">last updated: insert time here</p>
-        <div id="description">weather description</div>
-        <div id="temp">Temp: 92&deg;</div>
-        <div id="feels-like">Feels like: 86&deg;</div>
-        <div id="humidity">Humidity: 45%</div>
-        <div id="wind-speed">wind speed</div>
-        <div id="cloudiness">cloudiness %</div>
-        <div>
-            <span id="sunrise">sunrise</span>
-            /
-            <span id="sunset">sunset</span>
-        </div>
+        <p id="last-updated">Last updated: <span class="data"></span></p>
+        <div id="feels-like">Feels like: <span class="data"></span></div>
+        <div id="humidity">Humidity: <span class="data"></span>%</div>
+        <div id="wind-speed">Wind Speed: <span class="data"></span></div>
+        <div id="cloudiness">Cloudiness: <span class="data"></span>%</div>
+        <div id="sunrise">Sunrise: <span class="data"></span></div>
+        <div id="sunset">Sunset: <span class="data"></span></div>
     </section>
 </body>
 
