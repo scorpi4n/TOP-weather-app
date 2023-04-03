@@ -1,4 +1,4 @@
-import { CurrentWeatherRes } from "../ts/weather";
+import { CurrentWeatherRes, ForecastRes } from "../ts/weather";
 import { toTitleCase } from "./utils";
 
 export const weatherSection: HTMLElement = document.querySelector(
@@ -41,4 +41,10 @@ export function displayWeather(weatherData: CurrentWeatherRes) {
   sunsetEl.innerText = new Date(
     weatherData.sys.sunset * 1000
   ).toLocaleTimeString();
+}
+
+export function displayForecast(forecastData: ForecastRes) {
+  for (const item of forecastData.list) {
+    console.log(new Date(item.dt * 1000).toLocaleString());
+  }
 }
