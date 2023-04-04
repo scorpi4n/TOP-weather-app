@@ -9,6 +9,6 @@ getCoords("san antonio")
   .catch(console.error);
 
 getCoords("san antonio")
-  .then(({ lat, lon }) => getForecast(lat, lon))
+  .then(({ lat, lon }) => getForecast(lat, lon, "imperial"))
   .then(displayForecast)
   .catch(console.error);
