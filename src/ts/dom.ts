@@ -1,4 +1,4 @@
-import { CurrentWeatherRes, ForecastRes } from "../ts/weather";
+import { CurrentWeatherRes, ForecastRes, ForecastResItem } from "../ts/weather";
 import { toTitleCase } from "./utils";
 
 export const weatherSection: HTMLElement = document.querySelector(
@@ -44,7 +44,23 @@ export function displayWeather(weatherData: CurrentWeatherRes) {
 }
 
 export function displayForecast(forecastData: ForecastRes) {
-  for (const item of forecastData.list) {
-    console.log(new Date(item.dt * 1000).toLocaleString());
-  }
+  forecastData.list.forEach((item, i) =>
+    document.body.appendChild(forecastItem(forecastData.list[i]))
+  );
+}
+
+export function forecastItem(forecastItem: ForecastResItem) {
+  const li = document.createElement("li");
+  li.appendChild(div(new Date(forecastItem.dt * 1000).toLocaleString()));
+  li.appendChild(div(toTitleCase(forecastItem.weather[0].description)));
+  li.appendChild(div(toTitleCase(`${forecastItem.main.temp}`)));
+
+  return li;
+}
+
+function div(innerText = "") {
+  const div = document.createElement("div");
+  div.innerText = innerText;
+
+  return div;
 }
