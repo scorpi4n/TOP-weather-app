@@ -1,3 +1,4 @@
+import { format } from "date-fns";
 import { CurrentWeatherRes, ForecastRes, ForecastResItem } from "../ts/weather";
 import { toTitleCase } from "./utils";
 
@@ -21,6 +22,8 @@ export const cloudinessEl: HTMLElement =
   document.querySelector("#cloudiness .data");
 export const sunriseEl: HTMLElement = document.querySelector("#sunrise .data");
 export const sunsetEl: HTMLElement = document.querySelector("#sunset .data");
+export const hourlyForecastEl: HTMLElement =
+  document.querySelector("#hourly-forecast");
 
 export function displayWeather(weatherData: CurrentWeatherRes) {
   cityEl.innerText = weatherData.name;
@@ -43,24 +46,30 @@ export function displayWeather(weatherData: CurrentWeatherRes) {
   ).toLocaleTimeString();
 }
 
-export function displayForecast(forecastData: ForecastRes) {
-  forecastData.list.forEach((item, i) =>
-    document.body.appendChild(forecastItem(forecastData.list[i]))
+export function displayHourlyForecast(forecastData: ForecastRes) {
+  forecastData.list.forEach((_, i) =>
+    hourlyForecastEl.appendChild(forecastItem(forecastData.list[i]))
   );
 }
 
 export function forecastItem(forecastItem: ForecastResItem) {
   const li = document.createElement("li");
-  li.appendChild(div(new Date(forecastItem.dt * 1000).toLocaleString()));
-  li.appendChild(div(toTitleCase(forecastItem.weather[0].description)));
-  li.appendChild(div(toTitleCase(`${forecastItem.main.temp}`)));
+
+  const datetimeDiv = document.createElement("div");
+  datetimeDiv.classList.add("datetime");
+  datetimeDiv.innerText = format(new Date(forecastItem.dt * 1000), "p, E");
+
+  const descriptionDiv = document.createElement("div");
+  descriptionDiv.classList.add("description");
+  descriptionDiv.innerText = toTitleCase(forecastItem.weather[0].description);
+
+  const temperatureDiv = document.createElement("div");
+  temperatureDiv.classList.add("temperature");
+  temperatureDiv.innerText = forecastItem.main.temp.toFixed() + "°";
+
+  li.appendChild(datetimeDiv);
+  li.appendChild(descriptionDiv);
+  li.appendChild(temperatureDiv);
 
   return li;
-}
-
-function div(innerText = "") {
-  const div = document.createElement("div");
-  div.innerText = innerText;
-
-  return div;
 }
