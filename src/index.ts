@@ -1,5 +1,5 @@
 import "./styles/style.scss";
-import { displayForecast, displayWeather } from "./ts/dom";
+import { displayHourlyForecast, displayWeather } from "./ts/dom";
 import { getCoords } from "./ts/utils";
 import { getCurrentWeather, getForecast } from "./ts/weather";
 
@@ -10,5 +10,5 @@ getCoords("san antonio")
 
 getCoords("san antonio")
   .then(({ lat, lon }) => getForecast(lat, lon, "imperial"))
-  .then(displayForecast)
+  .then(displayHourlyForecast)
   .catch(console.error);
