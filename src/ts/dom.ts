@@ -33,8 +33,8 @@ export function displayWeather(weatherData: CurrentWeatherRes) {
   weatherDescriptionEl.innerText = toTitleCase(
     weatherData.weather[0].description
   );
-  temperatureEl.innerText = `${weatherData.main.temp}`;
-  feelsLikeEl.innerText = `${weatherData.main.feels_like}`;
+  temperatureEl.innerText = `${weatherData.main.temp.toFixed()}`;
+  feelsLikeEl.innerText = `${weatherData.main.feels_like.toFixed()}°`;
   humidityEl.innerText = `${weatherData.main.humidity}`;
   windSpeedEl.innerText = `Wind ${weatherData.wind.speed}`;
   cloudinessEl.innerText = `${weatherData.clouds.all}`;
