@@ -26,7 +26,7 @@ export const hourlyForecastEl: HTMLElement =
   document.querySelector("#hourly-forecast");
 
 export function displayWeather(weatherData: CurrentWeatherRes) {
-  const { main, wind, clouds, dt, name } = weatherData;
+  const { main, wind, clouds, dt, name, units } = weatherData;
   const { sunrise, sunset } = weatherData.sys;
   const { description } = weatherData.weather[0];
 
@@ -36,7 +36,7 @@ export function displayWeather(weatherData: CurrentWeatherRes) {
   temperatureEl.innerText = `${main.temp.toFixed()}`;
   feelsLikeEl.innerText = `${main.feels_like.toFixed()}°`;
   humidityEl.innerText = `${main.humidity}`;
-  windSpeedEl.innerText = `Wind ${wind.speed}`;
+  windSpeedEl.innerText = `${wind.speed} ${units == "metric" ? "m/s" : "mph"}`;
   cloudinessEl.innerText = `${clouds.all}`;
   sunriseEl.innerText = format(new Date(sunrise * 1000), "p");
   sunsetEl.innerText = format(new Date(sunset * 1000), "p");
