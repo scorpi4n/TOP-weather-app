@@ -38,12 +38,8 @@ export function displayWeather(weatherData: CurrentWeatherRes) {
   humidityEl.innerText = `${weatherData.main.humidity}`;
   windSpeedEl.innerText = `Wind ${weatherData.wind.speed}`;
   cloudinessEl.innerText = `${weatherData.clouds.all}`;
-  sunriseEl.innerText = new Date(
-    weatherData.sys.sunrise * 1000
-  ).toLocaleTimeString();
-  sunsetEl.innerText = new Date(
-    weatherData.sys.sunset * 1000
-  ).toLocaleTimeString();
+  sunriseEl.innerText = format(new Date(weatherData.sys.sunrise * 1000), "p");
+  sunsetEl.innerText = format(new Date(weatherData.sys.sunset * 1000), "p");
 }
 
 export function displayHourlyForecast(forecastData: ForecastRes) {
