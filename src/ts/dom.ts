@@ -26,20 +26,20 @@ export const hourlyForecastEl: HTMLElement =
   document.querySelector("#hourly-forecast");
 
 export function displayWeather(weatherData: CurrentWeatherRes) {
-  cityEl.innerText = weatherData.name;
-  lastUpdatedTimeEl.innerText = new Date(
-    weatherData.dt * 1000
-  ).toLocaleTimeString();
-  weatherDescriptionEl.innerText = toTitleCase(
-    weatherData.weather[0].description
-  );
-  temperatureEl.innerText = `${weatherData.main.temp.toFixed()}`;
-  feelsLikeEl.innerText = `${weatherData.main.feels_like.toFixed()}°`;
-  humidityEl.innerText = `${weatherData.main.humidity}`;
-  windSpeedEl.innerText = `Wind ${weatherData.wind.speed}`;
-  cloudinessEl.innerText = `${weatherData.clouds.all}`;
-  sunriseEl.innerText = format(new Date(weatherData.sys.sunrise * 1000), "p");
-  sunsetEl.innerText = format(new Date(weatherData.sys.sunset * 1000), "p");
+  const { main, wind, clouds, dt, name } = weatherData;
+  const { sunrise, sunset } = weatherData.sys;
+  const { description } = weatherData.weather[0];
+
+  cityEl.innerText = name;
+  lastUpdatedTimeEl.innerText = new Date(dt * 1000).toLocaleTimeString();
+  weatherDescriptionEl.innerText = toTitleCase(description);
+  temperatureEl.innerText = `${main.temp.toFixed()}`;
+  feelsLikeEl.innerText = `${main.feels_like.toFixed()}°`;
+  humidityEl.innerText = `${main.humidity}`;
+  windSpeedEl.innerText = `Wind ${wind.speed}`;
+  cloudinessEl.innerText = `${clouds.all}`;
+  sunriseEl.innerText = format(new Date(sunrise * 1000), "p");
+  sunsetEl.innerText = format(new Date(sunset * 1000), "p");
 }
 
 export function displayHourlyForecast(forecastData: ForecastRes) {
