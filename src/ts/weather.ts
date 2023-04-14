@@ -10,7 +10,10 @@ export async function getCurrentWeather(
   const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=${units}&appid=${apiKey}`;
   const res = await fetch(url, { mode: "cors" });
 
-  return (await res.json()) as CurrentWeatherRes;
+  const response = (await res.json()) as CurrentWeatherRes;
+  response.units = units;
+
+  return response;
 }
 
 export async function getForecast(
@@ -22,7 +25,10 @@ export async function getForecast(
   const url = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=${units}&appid=${apiKey}`;
   const res = await fetch(url, { mode: "cors" });
 
-  return (await res.json()) as ForecastRes;
+  const response = (await res.json()) as ForecastRes;
+  response.units = units;
+
+  return response;
 }
 
 export function getForecastedLows(forecast: ForecastRes) {
@@ -84,6 +90,7 @@ export function getForecastedHighs(forecast: ForecastRes) {
 }
 
 export interface CurrentWeatherRes {
+  units: string;
   coord: {
     lon: number;
     lat: number;
@@ -162,6 +169,7 @@ export interface ForecastResItem {
 }
 
 export interface ForecastRes {
+  units: string;
   cod: number;
   message: number;
   cnt: number;
