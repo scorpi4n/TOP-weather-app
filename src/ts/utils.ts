@@ -17,3 +17,7 @@ export function toTitleCase(string: string) {
     })
     .join(" ");
 }
+
+export function average(arr: number[]): number {
+  return arr.reduce((acc, val) => acc + val) / arr.length;
+}
