@@ -6,11 +6,11 @@ export async function getCurrentWeather(
   lon: number,
   units = "metric",
   apiKey: string = API_KEY
-) {
+): Promise<CurrentWeatherRes> {
   const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=${units}&appid=${apiKey}`;
   const res = await fetch(url, { mode: "cors" });
 
-  const response = (await res.json()) as CurrentWeatherRes;
+  const response = await res.json();
   response.units = units;
 
   return response;
@@ -21,11 +21,11 @@ export async function getForecast(
   lon: number,
   units = "metric",
   apiKey: string = API_KEY
-) {
+): Promise<ForecastRes> {
   const url = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=${units}&appid=${apiKey}`;
   const res = await fetch(url, { mode: "cors" });
 
-  const response = (await res.json()) as ForecastRes;
+  const response = await res.json();
   response.units = units;
 
   return response;
