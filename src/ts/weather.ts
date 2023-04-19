@@ -34,7 +34,7 @@ export async function getForecast(
 export function getForecastedLows(forecast: ForecastRes) {
   const map = new Map();
 
-  forecast.list.forEach((item, i) => {
+  forecast.list.forEach((item) => {
     const entry: ForecastResItem[] | undefined = map.get(
       startOfDay(new Date(item.dt * 1000)).toLocaleDateString()
     );
@@ -42,10 +42,9 @@ export function getForecastedLows(forecast: ForecastRes) {
     if (entry != undefined) {
       entry.push(item);
     } else {
-      map.set(
-        startOfDay(new Date(forecast.list[i].dt * 1000)).toLocaleDateString(),
-        [forecast.list[i]]
-      );
+      map.set(startOfDay(new Date(item.dt * 1000)).toLocaleDateString(), [
+        item,
+      ]);
     }
   });
 
@@ -63,7 +62,7 @@ export function getForecastedLows(forecast: ForecastRes) {
 export function getForecastedHighs(forecast: ForecastRes) {
   const map = new Map();
 
-  forecast.list.forEach((item, i) => {
+  forecast.list.forEach((item) => {
     const entry: ForecastResItem[] | undefined = map.get(
       startOfDay(new Date(item.dt * 1000)).toLocaleDateString()
     );
@@ -71,10 +70,9 @@ export function getForecastedHighs(forecast: ForecastRes) {
     if (entry != undefined) {
       entry.push(item);
     } else {
-      map.set(
-        startOfDay(new Date(forecast.list[i].dt * 1000)).toLocaleDateString(),
-        [forecast.list[i]]
-      );
+      map.set(startOfDay(new Date(item.dt * 1000)).toLocaleDateString(), [
+        item,
+      ]);
     }
   });
 
