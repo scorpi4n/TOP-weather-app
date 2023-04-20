@@ -52,15 +52,12 @@ export function forecastItem(forecastItem: ForecastResItem) {
   const li = document.createElement("li");
 
   const datetimeDiv = document.createElement("div");
-  datetimeDiv.classList.add("datetime");
   datetimeDiv.innerText = format(new Date(forecastItem.dt * 1000), "p, E");
 
   const descriptionDiv = document.createElement("div");
-  descriptionDiv.classList.add("description");
   descriptionDiv.innerText = toTitleCase(forecastItem.weather[0].description);
 
   const temperatureDiv = document.createElement("div");
-  temperatureDiv.classList.add("temperature");
   temperatureDiv.innerText = forecastItem.main.temp.toFixed() + "°";
 
   li.appendChild(datetimeDiv);
