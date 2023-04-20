@@ -1,4 +1,3 @@
-import { startOfDay } from "date-fns";
 import { API_KEY } from "../consts";
 
 export async function getCurrentWeather(
@@ -29,62 +28,6 @@ export async function getForecast(
   response.units = units;
 
   return response;
-}
-
-export function getForecastedLows(forecast: ForecastRes) {
-  const map = new Map();
-
-  forecast.list.forEach((item) => {
-    const entry: ForecastResItem[] | undefined = map.get(
-      startOfDay(new Date(item.dt * 1000)).toLocaleDateString()
-    );
-
-    if (entry != undefined) {
-      entry.push(item);
-    } else {
-      map.set(startOfDay(new Date(item.dt * 1000)).toLocaleDateString(), [
-        item,
-      ]);
-    }
-  });
-
-  return Array.from(map)
-    .flat()
-    .filter((item) => item instanceof Array)
-    .map((arr: ForecastResItem[]) =>
-      arr.reduce((acc, current) =>
-        current.main.temp_min < acc.main.temp_min ? current : acc
-      )
-    )
-    .map((item) => item.main.temp_min);
-}
-
-export function getForecastedHighs(forecast: ForecastRes) {
-  const map = new Map();
-
-  forecast.list.forEach((item) => {
-    const entry: ForecastResItem[] | undefined = map.get(
-      startOfDay(new Date(item.dt * 1000)).toLocaleDateString()
-    );
-
-    if (entry != undefined) {
-      entry.push(item);
-    } else {
-      map.set(startOfDay(new Date(item.dt * 1000)).toLocaleDateString(), [
-        item,
-      ]);
-    }
-  });
-
-  return Array.from(map)
-    .flat()
-    .filter((item) => item instanceof Array)
-    .map((arr: ForecastResItem[]) =>
-      arr.reduce((acc, current) =>
-        current.main.temp_max > acc.main.temp_max ? current : acc
-      )
-    )
-    .map((item) => item.main.temp_max);
 }
 
 export interface CurrentWeatherRes {
