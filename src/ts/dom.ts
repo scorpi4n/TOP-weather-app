@@ -52,6 +52,7 @@ export function forecastItem(forecastItem: ForecastResItem) {
   const li = document.createElement("li");
 
   const datetimeDiv = document.createElement("div");
+  datetimeDiv.classList.add("datetime");
   datetimeDiv.innerText = format(new Date(forecastItem.dt * 1000), "p, E");
 
   const descriptionDiv = document.createElement("div");
