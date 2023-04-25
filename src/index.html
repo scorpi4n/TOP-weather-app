@@ -10,16 +10,6 @@
 
 <body>
     <h1>Weather Data</h1>
-    <!-- <label for="location">Location:</label>
-    <input type="text" name="location" id="location">
-    <fieldset>
-        <legend>Units:</legend>
-        <label for="fahrenheight">F&deg;</label>
-        <input type="radio" name="units" id="fahrenheight">
-        <label for="celcius">C&deg;</label>
-        <input type="radio" name="units" id="celcius">
-    </fieldset>
-    </form> -->
 
     <section aria-labelledby="city">
         <div id="temp"><span class="data"></span>&deg;</div>
@@ -34,8 +24,21 @@
         <div id="sunset">Sunset: <span class="data"></span></div>
     </section>
 
+    <form>
+        <label for="location">Location:</label>
+        <input type="text" name="location" id="location">
+        <fieldset>
+            <legend>Units:</legend>
+            <label for="imperial">Imperial</label>
+            <input type="radio" name="units" id="imperial" value="imperial" checked>
+            <label for="metric">Metric</label>
+            <input type="radio" name="units" id="metric" value="metric">
+        </fieldset>
+        <button type="submit">Refresh</button>
+    </form>
+
     <section aria-labelledby="hourly-forecast-label">
-        <h2 id="hourly-forecast-label">Hourly Forecast</h2>
+        <h2 id="hourly-forecast-label">Tri-hourly 5-day Forecast</h2>
         <ul id="hourly-forecast"></ul>
     </section>
 </body>
