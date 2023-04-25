@@ -1,6 +1,12 @@
 import { format } from "date-fns";
-import { CurrentWeatherRes, ForecastRes, ForecastResItem } from "../ts/weather";
-import { toTitleCase } from "./utils";
+import {
+  CurrentWeatherRes,
+  ForecastRes,
+  ForecastResItem,
+  getCurrentWeather,
+  getForecast,
+} from "../ts/weather";
+import { getCoords, toTitleCase } from "./utils";
 
 export const weatherSection: HTMLElement = document.querySelector(
   "section[aria-labelledby=city]"
@@ -24,6 +30,24 @@ export const sunriseEl: HTMLElement = document.querySelector("#sunrise .data");
 export const sunsetEl: HTMLElement = document.querySelector("#sunset .data");
 export const hourlyForecastEl: HTMLElement =
   document.querySelector("#hourly-forecast");
+export const form = document.querySelector("form");
+
+export function handleSubmit(e: SubmitEvent) {
+  e.preventDefault();
+
+  const data = new FormData(e.target as HTMLFormElement);
+  const [location, units] = [`${data.get("location")}`, `${data.get("units")}`];
+
+  getCoords(location)
+    .then(({ lat, lon }) => getCurrentWeather(lat, lon, units))
+    .then(displayWeather)
+    .catch(console.error);
+
+  getCoords(location)
+    .then(({ lat, lon }) => getForecast(lat, lon, units))
+    .then(displayHourlyForecast)
+    .catch(console.error);
+}
 
 export function displayWeather(weatherData: CurrentWeatherRes) {
   const { main, wind, clouds, dt, name, units } = weatherData;
