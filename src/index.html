@@ -1,46 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Weather App</title>
-</head>
+  </head>
 
-<body>
+  <body>
     <h1>Weather Data</h1>
 
     <section aria-labelledby="city">
-        <div id="temp"><span class="data"></span>&deg;</div>
-        <div id="description"></div>
-        <h2 id="city">City</h2>
-        <p id="last-updated">Last updated: <span class="data"></span></p>
-        <div id="feels-like">Feels like: <span class="data"></span></div>
-        <div id="humidity">Humidity: <span class="data"></span>%</div>
-        <div id="wind-speed">Wind Speed: <span class="data"></span></div>
-        <div id="cloudiness">Cloudiness: <span class="data"></span>%</div>
-        <div id="sunrise">Sunrise: <span class="data"></span></div>
-        <div id="sunset">Sunset: <span class="data"></span></div>
+      <div id="temp"><span class="data"></span>&deg;</div>
+      <div id="description"></div>
+      <h2 id="city">City</h2>
+      <p id="last-updated">Last updated: <span class="data"></span></p>
+      <div id="feels-like">Feels like: <span class="data"></span></div>
+      <div id="humidity">Humidity: <span class="data"></span>%</div>
+      <div id="wind-speed">Wind Speed: <span class="data"></span></div>
+      <div id="cloudiness">Cloudiness: <span class="data"></span>%</div>
+      <div id="sunrise">Sunrise: <span class="data"></span></div>
+      <div id="sunset">Sunset: <span class="data"></span></div>
     </section>
 
     <form>
-        <label for="location">Location:</label>
-        <input type="text" name="location" id="location">
-        <fieldset>
-            <legend>Units:</legend>
-            <label for="imperial">Imperial</label>
-            <input type="radio" name="units" id="imperial" value="imperial" checked>
-            <label for="metric">Metric</label>
-            <input type="radio" name="units" id="metric" value="metric">
-        </fieldset>
-        <button type="submit">Refresh</button>
+      <label for="location">Location:</label>
+      <input type="text" name="location" id="location" />
+      <fieldset>
+        <legend>Units:</legend>
+        <label for="imperial">Imperial</label>
+        <input
+          type="radio"
+          name="units"
+          id="imperial"
+          value="imperial"
+          checked
+        />
+        <label for="metric">Metric</label>
+        <input type="radio" name="units" id="metric" value="metric" />
+      </fieldset>
+      <button type="submit">Refresh</button>
     </form>
 
     <section aria-labelledby="hourly-forecast-label">
-        <h2 id="hourly-forecast-label">Tri-hourly 5-day Forecast</h2>
-        <ul id="hourly-forecast"></ul>
+      <h2 id="hourly-forecast-label">Tri-hourly 5-day Forecast</h2>
+      <ul id="hourly-forecast"></ul>
     </section>
-</body>
-
+  </body>
 </html>

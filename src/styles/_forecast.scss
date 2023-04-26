@@ -1,4 +1,4 @@
-section[aria-labelledby=hourly-forecast-label] {
+section[aria-labelledby="hourly-forecast-label"] {
   $gap: 1rem;
 
   ul {
@@ -19,14 +19,13 @@ section[aria-labelledby=hourly-forecast-label] {
     margin-inline-start: $left-margin;
     background-color: darksalmon;
     border-radius: 0.75rem;
-    padding: .25rem .5rem;
+    padding: 0.25rem 0.5rem;
 
     .datetime {
       position: absolute;
-      left: -$left-margin ;
+      left: -$left-margin;
       top: 50%;
       transform: translateY(-50%);
-
     }
 
     &::before {
