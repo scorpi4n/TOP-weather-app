@@ -30,13 +30,19 @@ export const sunriseEl: HTMLElement = document.querySelector("#sunrise .data");
 export const sunsetEl: HTMLElement = document.querySelector("#sunset .data");
 export const hourlyForecastEl: HTMLElement =
   document.querySelector("#hourly-forecast");
-export const form = document.querySelector("form");
+export const form = document.querySelector<HTMLFormElement>("form");
 
 export function handleSubmit(e: SubmitEvent) {
   e.preventDefault();
 
   const data = new FormData(e.target as HTMLFormElement);
   const [location, units] = [`${data.get("location")}`, `${data.get("units")}`];
+
+  displayWeatherAndForecast(location || undefined, units || undefined);
+}
+
+export function displayWeatherAndForecast(location = "london", units?: string) {
+  console.log(units);
 
   getCoords(location)
     .then(({ lat, lon }) => getCurrentWeather(lat, lon, units))
@@ -45,7 +51,7 @@ export function handleSubmit(e: SubmitEvent) {
 
   getCoords(location)
     .then(({ lat, lon }) => getForecast(lat, lon, units))
-    .then(displayHourlyForecast)
+    .then(displayForecast)
     .catch(console.error);
 }
 
@@ -66,7 +72,8 @@ export function displayWeather(weatherData: CurrentWeatherRes) {
   sunsetEl.innerText = format(new Date(sunset * 1000), "p");
 }
 
-export function displayHourlyForecast(forecastData: ForecastRes) {
+export function displayForecast(forecastData: ForecastRes) {
+  hourlyForecastEl.innerHTML = "";
   forecastData.list.forEach((_, i) =>
     hourlyForecastEl.appendChild(forecastItem(forecastData.list[i]))
   );

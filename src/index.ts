@@ -1,4 +1,6 @@
 import "./styles/style.scss";
-import { form, handleSubmit } from "./ts/dom";
+import { displayWeatherAndForecast, form, handleSubmit } from "./ts/dom";
 
 form.addEventListener("submit", handleSubmit);
+
+displayWeatherAndForecast();
